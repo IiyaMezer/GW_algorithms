@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            int[] test_array = ArrayUtils.PrepareArray(15);
+            int[] test_array = ArrayUtils.PrepareArray(6);
             ArrayUtils.PrintArray(test_array);
 
             DateTime start = DateTime.Now;
@@ -23,18 +23,15 @@ public static class Sort
 /// <param name="unsorted_array">неотсортированный массив</param>
     public static void HeapSort(int[] unsorted_array)
     {
-        int N = unsorted_array.Length;
-
-        for (int i = N/2-1; i >= 0; i--)
+        
+        for (int i = unsorted_array.Length / 2 - 1; i >= 0; i--)
         {
-            ArrayToHeap(unsorted_array,N,i);
+            ArrayToHeap(unsorted_array, unsorted_array.Length, i);
         }
 
-        for (int i = N-1; i >= 0 ; i--)
+        for (int i = unsorted_array.Length - 1; i >= 0 ; i--)
         {
-            unsorted_array[0] += unsorted_array[i];
-            unsorted_array[i] = unsorted_array[0] - unsorted_array[i];
-            unsorted_array[0] -= unsorted_array[i];
+            (unsorted_array[0], unsorted_array[i]) = (unsorted_array[i], unsorted_array[0]);
             ArrayToHeap(unsorted_array, i, 0);
         }
     }
